@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.arad.care4pets">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Care4Pets"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Care4Pets">
+        <activity
+            android:name=".HealthRecordDetails"
+            android:exported="false" />
+        <activity android:name=".DashboardActivity" />
+        <activity android:name=".HealthRecordsActivity" />
+        <activity android:name=".AddHealthRecordActivity" />
+        <activity android:name=".CareInstructionsActivity" />
+        <activity android:name=".AddReminderActivity" />
+        <activity android:name=".EditReminderActivity" />
+        <activity android:name=".RemindersActivity" />
+        <activity android:name=".PetProfileActivity" />
+        <activity android:name=".AddPetActivity" />
+        <activity android:name=".PetsListActivity" />
+        <activity android:name=".MenuActivity" />
+        <activity android:name=".LoginActivity" />
+        <activity android:name=".OnboardingActivity" />
+        <activity android:name=".SignupActivity" /> <!-- Launcher (Splash) -->
+        <activity
+            android:name=".SplashActivity"
+            android:exported="true"
+            android:noHistory="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

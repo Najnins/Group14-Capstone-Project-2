@@ -1,0 +1,48 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:orientation="vertical"
+    android:background="#F7FDFB">
+
+    <TextView
+        android:text="@string/add_health_record"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:textColor="#1F2B3A"
+        android:layout_marginBottom="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <EditText
+        android:id="@+id/etRecordTitle"
+        android:hint="@string/record_title"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_input"
+        android:padding="12dp"
+        android:autofillHints="name"
+        android:inputType="textCapWords" />
+
+    <EditText
+        android:id="@+id/etRecordDescription"
+        android:hint="@string/description"
+        android:layout_marginBottom="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_input"
+        android:inputType="textLongMessage"
+        android:padding="12dp"
+        android:autofillHints="name"
+        />
+
+
+
+    <Button
+        android:id="@+id/btn_save_health_record"
+        style="@style/PrimaryButton"
+        android:text="@string/save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

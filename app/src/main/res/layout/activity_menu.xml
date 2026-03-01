@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:cardview="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/app_background">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="24dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Menu"
+            android:textSize="24sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:text="Choose where to go"
+            android:textSize="14sp"
+            android:layout_marginBottom="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <!-- Card Grid -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="3"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:useDefaultMargins="true">
+
+            <!-- Home Dashboard -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDashboard"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                android:layout_rowWeight="1"
+                cardview:cardCornerRadius="24dp"
+                cardview:cardElevation="6dp"
+                android:backgroundTint="@color/pastel_blue">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:src="@drawable/ic_home"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        cardview:tint="@color/black" />
+
+                    <TextView
+                        android:text="Home Dashboard"
+                        android:textStyle="bold"
+                        android:gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Pets -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardPets"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                cardview:cardCornerRadius="24dp"
+                cardview:cardElevation="6dp"
+                android:backgroundTint="@color/pastel_pink">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:layout_width="48dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_paw"
+                        cardview:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Pets"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Health Records -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardHealth"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                cardview:cardCornerRadius="24dp"
+                cardview:cardElevation="6dp"
+                android:backgroundTint="@color/pastel_green">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:src="@drawable/ic_file"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        cardview:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Health Records"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Reminders -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardReminders"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android.layout_columnWeight="1"
+                cardview:cardCornerRadius="24dp"
+                cardview:cardElevation="6dp"
+                android:backgroundTint="@color/pastel_yellow">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:src="@drawable/ic_bell"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        cardview:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Reminders"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Care Instructions -->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardCare"
+                android:layout_width="0dp"
+                android:layout_height="140dp"
+                android:layout_columnWeight="1"
+                cardview:cardCornerRadius="24dp"
+                cardview:cardElevation="6dp"
+                android:backgroundTint="@color/pastel_mint">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <ImageView
+                        android:src="@drawable/ic_book"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        cardview:tint="@color/black" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Care Instructions"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</ScrollView>
