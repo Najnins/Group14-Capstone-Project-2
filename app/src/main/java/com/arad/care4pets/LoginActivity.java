@@ -9,48 +9,61 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.util.concurrent.Executors;
+
 public class LoginActivity extends AppCompatActivity {
+
+    private AppRepository repository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        TextInputEditText etEmail = findViewById(R.id.etEmail);
+        repository = new AppRepository(getApplication());
+
+        TextInputEditText etEmail    = findViewById(R.id.etEmail);
         TextInputEditText etPassword = findViewById(R.id.etPassword);
-        Button btnLogin = findViewById(R.id.btnLogin);
-        Button btnCreateAccount = findViewById(R.id.btnCreateAccount);
+        Button btnLogin              = findViewById(R.id.btnLogin);
+        Button btnCreateAccount      = findViewById(R.id.btnCreateAccount);
 
         btnLogin.setOnClickListener(v -> {
-            String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
-            String pass = etPassword.getText() != null ? etPassword.getText().toString().trim() : "";
+            String email    = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
+            String password = etPassword.getText() != null ? etPassword.getText().toString() : "";
 
-            // Check empty fields
-            if (email.isEmpty() || pass.isEmpty()) {
-                Toast.makeText(LoginActivity.this,
-                        "Please enter email and password",
-                        Toast.LENGTH_SHORT).show();
+            if (email.isEmpty() || password.isEmpty()) {
+                Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // EMAIL VALIDATION
             if (!android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
-                Toast.makeText(LoginActivity.this,
-                        "Please enter a valid email address",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Please enter a valid email address", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            // If valid → continue login
-            Intent intent = new Intent(LoginActivity.this, MenuActivity.class);
-            startActivity(intent);
-            finish();
+            // ── Verify credentials against DB on background thread ────────────
+            Executors.newSingleThreadExecutor().execute(() -> {
+                User user = repository.login(email, password);
+
+                runOnUiThread(() -> {
+                    if (user == null) {
+                        // Don't tell the user WHICH field is wrong — security best practice
+                        Toast.makeText(this,
+                                "Incorrect email or password",
+                                Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
+                    // Valid login — save session
+                    UserSessionManager.login(this, email);
+
+                    startActivity(new Intent(this, MenuActivity.class));
+                    finish();
+                });
+            });
         });
 
-
-        btnCreateAccount.setOnClickListener(v -> {
-        Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-        startActivity(intent);
-    });
+        btnCreateAccount.setOnClickListener(v ->
+                startActivity(new Intent(this, SignupActivity.class)));
     }
 }
