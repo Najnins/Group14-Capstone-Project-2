@@ -1,6 +1,7 @@
 package com.arad.care4pets;
 
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity(tableName = "care_instructions")
@@ -9,20 +10,29 @@ public class CareInstruction {
     @PrimaryKey(autoGenerate = true)
     private int id;
     private String instruction;
+    private int petId; // 0 = not linked to a specific pet
 
+    public CareInstruction() {}
+
+    @Ignore
     public CareInstruction(String instruction) {
         this.instruction = instruction;
+        this.petId = 0;
     }
 
-    public int getId() {
-        return id;
+    @Ignore
+    public CareInstruction(String instruction, int petId) {
+        this.instruction = instruction;
+        this.petId = petId;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
+    // Getters
+    public int getId() { return id; }
+    public String getInstruction() { return instruction; }
+    public int getPetId() { return petId; }
 
-    public String getInstruction() {
-        return instruction;
-    }
+    // Setters
+    public void setId(int id) { this.id = id; }
+    public void setInstruction(String instruction) { this.instruction = instruction; }
+    public void setPetId(int petId) { this.petId = petId; }
 }
