@@ -5,17 +5,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 public class AddPetActivity extends AppCompatActivity {
 
-    private AppRepository repository;
+    private PetViewModel petViewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_pet);
 
-        repository = new AppRepository(getApplication());
+        petViewModel = new ViewModelProvider(this).get(PetViewModel.class);
 
         EditText etName = findViewById(R.id.etPetName);
         EditText etSpecies = findViewById(R.id.etPetSpecies);
@@ -35,7 +36,7 @@ public class AddPetActivity extends AppCompatActivity {
             }
 
             Pet pet = new Pet(name, species, Integer.parseInt(ageText), notes, 0, 0);
-            repository.insert(pet);
+            petViewModel.insert(pet);
 
             Toast.makeText(this, "Pet added", Toast.LENGTH_SHORT).show();
             finish();
