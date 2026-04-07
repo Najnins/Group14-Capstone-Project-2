@@ -36,8 +36,8 @@ public class AddReminderActivity extends AppCompatActivity {
     private MaterialButtonToggleGroup toggleButtonPriority;
     private final Calendar calendar = Calendar.getInstance();
     private AppRepository repository;
+    private int userId;
 
-    // Android 13+ runtime permission for posting notifications
     private final ActivityResultLauncher<String> notificationPermissionLauncher =
             registerForActivityResult(new ActivityResultContracts.RequestPermission(), granted -> {
                 if (!granted) {
@@ -53,6 +53,7 @@ public class AddReminderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_reminder);
 
         repository = new AppRepository(getApplication());
+        userId     = UserSessionManager.getUserId(this);
 
         etTitle  = findViewById(R.id.etReminderTitle);
         etDate   = findViewById(R.id.etReminderDate);
@@ -68,21 +69,15 @@ public class AddReminderActivity extends AppCompatActivity {
         btnSave.setOnClickListener(v -> saveReminder());
         toggleButtonPriority.check(R.id.btnLow);
 
-        // Pre-fill date if user tapped a calendar date in DashboardActivity
         String selectedDate = getIntent().getStringExtra("selected_date");
         if (selectedDate != null && !selectedDate.isEmpty()) {
             etDate.setText(selectedDate);
         }
 
-        // Request permissions needed for notifications
         requestNotificationPermissionIfNeeded();
         checkExactAlarmPermission();
     }
 
-    /**
-     * Android 13+ requires a runtime dialog for POST_NOTIFICATIONS.
-     * Earlier versions grant it automatically via the manifest.
-     */
     private void requestNotificationPermissionIfNeeded() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS)
@@ -92,14 +87,6 @@ public class AddReminderActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * Android 12+ requires the user to manually grant "Alarms & Reminders"
-     * in device Settings. If not granted, setExactAndAllowWhileIdle() is
-     * silently rejected and no notification ever fires.
-     *
-     * We detect this and show a dialog that takes the user to the right
-     * Settings screen to grant it.
-     */
     private void checkExactAlarmPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
@@ -107,13 +94,11 @@ public class AddReminderActivity extends AppCompatActivity {
                 new AlertDialog.Builder(this)
                         .setTitle("Allow Exact Reminders")
                         .setMessage(
-                                "To send notifications at the exact time you set, " +
-                                        "Care4Pets needs the 'Alarms & Reminders' permission.\n\n" +
-                                        "Tap 'Open Settings', find Care4Pets in the list, " +
-                                        "and turn on 'Allow setting alarms and reminders'."
+                                "To notify you at the exact time you set, Care4Pets needs the " +
+                                        "'Alarms & Reminders' permission.\n\nTap 'Open Settings', find " +
+                                        "Care4Pets, and turn on 'Allow setting alarms and reminders'."
                         )
                         .setPositiveButton("Open Settings", (dialog, which) -> {
-                            // Opens the exact alarm settings page directly
                             Intent intent = new Intent(Settings.ACTION_REQUEST_SCHEDULE_EXACT_ALARM);
                             intent.setData(Uri.parse("package:" + getPackageName()));
                             startActivity(intent);
@@ -158,6 +143,7 @@ public class AddReminderActivity extends AppCompatActivity {
 
         Reminder reminder = new Reminder(title, date, time, priority,
                 switchRepeat.isChecked(), notes);
+        reminder.setUserId(userId); // stamp with current user
 
         Executors.newSingleThreadExecutor().execute(() -> {
             long newId = repository.insertReminderAndGetId(reminder);

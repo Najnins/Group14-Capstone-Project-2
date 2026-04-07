@@ -19,6 +19,7 @@ public class Reminder implements Parcelable {
     private String notes;
     private int petId;
     private int notificationId;
+    private int userId;
 
     public Reminder() {}
 
@@ -31,6 +32,7 @@ public class Reminder implements Parcelable {
         this.isRepeating = isRepeating;
         this.notes = notes;
         this.petId = 0;
+        this.userId = 0;
     }
 
     // Parcelable implementation...
@@ -45,6 +47,7 @@ public class Reminder implements Parcelable {
         notes = in.readString();
         petId = in.readInt();
         notificationId = in.readInt();
+        userId = in.readInt();
 
     }
 
@@ -71,6 +74,7 @@ public class Reminder implements Parcelable {
         dest.writeString(notes);
         dest.writeInt(petId);
         dest.writeInt(notificationId);
+        dest.writeInt(userId);
     }
 
     // Getters
@@ -83,6 +87,7 @@ public class Reminder implements Parcelable {
     public String getNotes() { return notes; }
     public int getPetId() { return petId; }
     public int getNotificationId() { return notificationId; }
+    public int getUserId(){return userId;}
 
     // Setters
     public void setId(int id) { this.id = id; }
@@ -94,4 +99,5 @@ public class Reminder implements Parcelable {
     public void setNotes(String notes) { this.notes = notes; }
     public void setPetId(int petId) { this.petId = petId; }
     public void setNotificationId(int notificationId) { this.notificationId = notificationId; }
+    public void setUserId(int userId){this.userId = userId;}
 }
