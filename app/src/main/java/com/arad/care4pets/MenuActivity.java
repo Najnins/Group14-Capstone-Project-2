@@ -18,8 +18,6 @@ public class MenuActivity extends AppCompatActivity {
         CardView cardDashboard = findViewById(R.id.cardDashboard);
         CardView cardPets = findViewById(R.id.cardPets);
         CardView cardReminders = findViewById(R.id.cardReminders);
-        CardView cardHealth = findViewById(R.id.cardHealth);
-        CardView cardCare = findViewById(R.id.cardCare);
         CardView cardLogout = findViewById(R.id.cardLogout);
 
         // Set click listeners for each card
@@ -35,13 +33,6 @@ public class MenuActivity extends AppCompatActivity {
             startActivity(new Intent(MenuActivity.this, RemindersActivity.class));
         });
 
-        cardHealth.setOnClickListener(v -> {
-            startActivity(new Intent(MenuActivity.this, HealthRecordsActivity.class));
-        });
-
-        cardCare.setOnClickListener(v -> {
-            startActivity(new Intent(MenuActivity.this, CareInstructionsActivity.class));
-        });
 
         cardLogout.setOnClickListener(v -> {
             new AlertDialog.Builder(this)

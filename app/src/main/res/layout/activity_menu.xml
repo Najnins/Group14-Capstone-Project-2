@@ -100,37 +100,6 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <!-- Health Records -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardHealth"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_columnWeight="1"
-                cardview:cardCornerRadius="24dp"
-                cardview:cardElevation="6dp"
-                android:backgroundTint="@color/pastel_green">
-
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:src="@drawable/ic_file"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        cardview:tint="@color/black" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/health_records"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
             <!-- Reminders -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardReminders"
@@ -163,35 +132,35 @@
             </androidx.cardview.widget.CardView>
 
             <!-- Care Instructions -->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardCare"
-                android:layout_width="0dp"
-                android:layout_height="140dp"
-                android:layout_columnWeight="1"
-                cardview:cardCornerRadius="24dp"
-                cardview:cardElevation="6dp"
-                android:backgroundTint="@color/pastel_mint">
+<!--            <androidx.cardview.widget.CardView-->
+<!--                android:id="@+id/cardCare"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="140dp"-->
+<!--                android:layout_columnWeight="1"-->
+<!--                cardview:cardCornerRadius="24dp"-->
+<!--                cardview:cardElevation="6dp"-->
+<!--                android:backgroundTint="@color/pastel_mint">-->
 
-                <LinearLayout
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+<!--                <LinearLayout-->
+<!--                    android:orientation="vertical"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="match_parent">-->
 
-                    <ImageView
-                        android:src="@drawable/ic_book"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        cardview:tint="@color/black" />
+<!--                    <ImageView-->
+<!--                        android:src="@drawable/ic_book"-->
+<!--                        android:layout_width="40dp"-->
+<!--                        android:layout_height="40dp"-->
+<!--                        cardview:tint="@color/black" />-->
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="6dp"
-                        android:text="@string/care_instructions"
-                        android:textStyle="bold" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+<!--                    <TextView-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginTop="6dp"-->
+<!--                        android:text="@string/care_instructions"-->
+<!--                        android:textStyle="bold" />-->
+<!--                </LinearLayout>-->
+<!--            </androidx.cardview.widget.CardView>-->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardLogout"
                 android:layout_width="0dp"
