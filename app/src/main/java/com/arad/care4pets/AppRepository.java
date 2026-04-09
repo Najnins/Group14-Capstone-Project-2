@@ -49,6 +49,9 @@ public class AppRepository {
     public LiveData<List<Pet>> getPetsForUser(int userId){
         return petDao.getPetsForUser(userId);
     }
+    public LiveData<Pet> getPetById(int petId){
+        return petDao.getPetById(petId);
+    }
     public void insert(Pet pet) { AppDatabase.databaseWriteExecutor.execute(() -> petDao.insert(pet)); }
     public void update(Pet pet) { AppDatabase.databaseWriteExecutor.execute(() -> petDao.update(pet)); }
     public void delete(Pet pet) { AppDatabase.databaseWriteExecutor.execute(() -> petDao.delete(pet)); }
