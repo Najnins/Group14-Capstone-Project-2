@@ -25,4 +25,6 @@ public interface PetDao {
     LiveData<List<Pet>> getPetsForUser(int userId);
     @Query("SELECT * FROM pets")
     LiveData<List<Pet>> getAllPets();
+    @Query("SELECT * FROM pets WHERE id = :petId")
+    LiveData<Pet> getPetById(int petId);
 }
