@@ -11,7 +11,7 @@ The goal of Prototype 2 is to deliver improved UI, screen navigation, and basic 
 ---
 
 ## 🛠️ Technologies Used  
-- **Android Studio (Kotlin + XML)**  
+- **Android Studio (Java + XML)**  
 - **Material Design Components**  
 - **Jetpack Navigation (if used)**  
 - **Dummy in-app data (no backend)**  
@@ -95,9 +95,9 @@ Dynamic care tips text screen.
 Ability to add new Care Instructions.
 
 ### **Team Members**
-Najnin
-Arad
-Shaheer
-Niaj
-Brian
+* Najnin
+* Arad
+* Shaheer
+* Niaj
+* Brian
 
