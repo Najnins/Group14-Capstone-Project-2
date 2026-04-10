@@ -1,11 +1,13 @@
 package com.arad.care4pets;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -27,10 +29,48 @@ public class CareInstructionsActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
 
         viewModel = new ViewModelProvider(this).get(CareInstructionsViewModel.class);
-
-        // Always show only the logged-in user's instructions
         viewModel.getInstructions().observe(this,
                 instructions -> adapter.setInstructions(instructions));
+
+        // Wire up edit and delete from the adapter's options button
+        adapter.setListener(new CareInstructionsAdapter.OnInstructionListener() {
+
+            @Override
+            public void onEditClick(CareInstruction instruction) {
+                // Show a dialog with a pre-filled EditText
+                EditText input = new EditText(CareInstructionsActivity.this);
+                input.setText(instruction.getInstruction());
+                input.setInputType(InputType.TYPE_CLASS_TEXT);
+                input.setSelection(input.getText().length()); // cursor at end
+
+                new AlertDialog.Builder(CareInstructionsActivity.this)
+                        .setTitle("Edit Instruction")
+                        .setView(input)
+                        .setPositiveButton("Save", (dialog, which) -> {
+                            String updated = input.getText().toString().trim();
+                            if (updated.isEmpty()) {
+                                Toast.makeText(CareInstructionsActivity.this,
+                                        "Instruction cannot be empty", Toast.LENGTH_SHORT).show();
+                                return;
+                            }
+                            instruction.setInstruction(updated);
+                            viewModel.update(instruction);
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            }
+
+            @Override
+            public void onDeleteClick(CareInstruction instruction) {
+                new AlertDialog.Builder(CareInstructionsActivity.this)
+                        .setTitle("Delete Instruction")
+                        .setMessage("Delete \"" + instruction.getInstruction() + "\"?")
+                        .setPositiveButton("Delete", (dialog, which) ->
+                                viewModel.delete(instruction))
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            }
+        });
 
         EditText etInstruction = findViewById(R.id.etInstruction);
         Button btnAdd          = findViewById(R.id.btnAddInstruction);
@@ -41,8 +81,6 @@ public class CareInstructionsActivity extends AppCompatActivity {
                 Toast.makeText(this, R.string.fill_out_form, Toast.LENGTH_SHORT).show();
                 return;
             }
-            // No petId — care instructions are user-scoped only
-            // ViewModel stamps userId automatically
             viewModel.insert(new CareInstruction(text));
             etInstruction.setText("");
         });

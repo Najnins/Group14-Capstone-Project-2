@@ -100,7 +100,7 @@ public class AppRepository {
     public LiveData<List<CareInstruction>> getInstructionsForUser(int userId) {
         return careInstructionsDao.getInstructionsForUser(userId);
     }
-
+    public void update(CareInstruction i) { AppDatabase.databaseWriteExecutor.execute(() -> careInstructionsDao.update(i));}
     public void insert(CareInstruction i) { AppDatabase.databaseWriteExecutor.execute(() -> careInstructionsDao.insert(i)); }
     public void delete(CareInstruction i) { AppDatabase.databaseWriteExecutor.execute(() -> careInstructionsDao.delete(i)); }
 }

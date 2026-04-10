@@ -13,8 +13,8 @@ public class CareInstructionsViewModel extends AndroidViewModel {
 
     public CareInstructionsViewModel(Application application) {
         super(application);
-        repository = new AppRepository(application);
-        userId= UserSessionManager.getUserId(application);
+        repository          = new AppRepository(application);
+        userId              = UserSessionManager.getUserId(application);
         instructionsForUser = repository.getInstructionsForUser(userId);
     }
 
@@ -23,8 +23,12 @@ public class CareInstructionsViewModel extends AndroidViewModel {
     }
 
     public void insert(CareInstruction instruction) {
-        instruction.setUserId(userId); // stamp with current user before saving
+        instruction.setUserId(userId);
         repository.insert(instruction);
+    }
+
+    public void update(CareInstruction instruction) {
+        repository.update(instruction);
     }
 
     public void delete(CareInstruction instruction) {
