@@ -14,25 +14,25 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Care4Pets">
         <activity
-            android:name=".HealthRecordDetails"
+            android:name=".ui.activities.HealthRecordDetails"
             android:exported="false" />
-        <activity android:name=".DashboardActivity" />
-        <activity android:name=".HealthRecordsActivity" />
-        <activity android:name=".AddHealthRecordActivity" />
-        <activity android:name=".CareInstructionsActivity" />
-        <activity android:name=".AddReminderActivity" />
-        <activity android:name=".EditReminderActivity" />
-        <activity android:name=".RemindersActivity" />
-        <activity android:name=".PetProfileActivity" />
-        <activity android:name=".AddPetActivity" />
-        <activity android:name=".EditPetActivity"/>
-        <activity android:name=".PetsListActivity" />
-        <activity android:name=".MenuActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".OnboardingActivity" />
-        <activity android:name=".SignupActivity" /> <!-- Launcher (Splash) -->
+        <activity android:name=".ui.activities.DashboardActivity" />
+        <activity android:name=".ui.activities.HealthRecordsActivity" />
+        <activity android:name=".ui.activities.AddHealthRecordActivity" />
+        <activity android:name=".ui.activities.CareInstructionsActivity" />
+        <activity android:name=".ui.activities.AddReminderActivity" />
+        <activity android:name=".ui.activities.EditReminderActivity" />
+        <activity android:name=".ui.activities.RemindersActivity" />
+        <activity android:name=".ui.activities.PetProfileActivity" />
+        <activity android:name=".ui.activities.AddPetActivity" />
+        <activity android:name=".ui.activities.EditPetActivity"/>
+        <activity android:name=".ui.activities.PetsListActivity" />
+        <activity android:name=".ui.activities.MenuActivity" />
+        <activity android:name=".ui.activities.LoginActivity" />
+        <activity android:name=".ui.activities.OnboardingActivity" />
+        <activity android:name=".ui.activities.SignupActivity" /> <!-- Launcher (Splash) -->
         <activity
-            android:name=".SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:exported="true"
             android:noHistory="true">
             <intent-filter>
@@ -43,11 +43,11 @@
         </activity>
 
         <receiver
-            android:name=".ReminderNotificationReceiver"
+            android:name=".notification.ReminderNotificationReceiver"
             android:exported="false"/>
 
         <receiver
-            android:name=".BootReceiver"
+            android:name=".notification.BootReceiver"
             android:exported="true"
             android:enabled="true">
             <intent-filter>
